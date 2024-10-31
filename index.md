@@ -1,4 +1,4 @@
-# Hello, AERPAW
+# Hello, COSMOS
 
 COSMOS is a wireless research platform. In this tutorial, you will create an account on ORBIT, practice reserving time on one of its sandboxes, load a disk image onto an ORBIT device, and log in to it.
 
@@ -55,7 +55,7 @@ This property can be exploited for authenticating login to a remote machine. Fir
 
 (Of course, this relies on you keeping your private key a secret.)
 
-We’re going to generate a key pair on our laptop, then upload it to our AERPAW profile.
+We’re going to generate a key pair on our laptop, then upload it to our COSMOS profile.
 
 Open a terminal, and generate a key named `id_rsa_cosmos`:
 
