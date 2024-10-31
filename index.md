@@ -128,6 +128,16 @@ A pop-up will load:
 
 In this window, select the end time for your reservation, then click "Submit". 
 
+Depending on the timing of your reservation (less than 12 hours in advance or not),
+
+* your reservation may be approved immediately (and you will get an email notification that it is approved) 
+* your reservation may be approved at the beginning of the slot (and you will get an email notification that it is approved) 
+* or it may be submitted and "pending", and you will get email notification about approval the day before.
+
+>[!NOTE] 
+>It is possible for you or someone else to request a time slot, even if it is "pending" for someone else. In case of a conflict - two users request the same resource at the same time - conflicts will be resolved based on how much time you've already used over the last two weeks. Those who have used less time will be more likely to have their requests approved for conflicting slots. Thus, you should be careful not to reserve time and then let it go unused - any time that you reserve will "count" against you in case of a conflict.
+
+
 ## Start an experiment
 
 At the beginning of your reservation, you are ready to run an experiment on COSMOS!
