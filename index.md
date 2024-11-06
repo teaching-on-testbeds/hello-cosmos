@@ -116,7 +116,7 @@ Once you have an account, you will log in to the COSMOS experiment portal at [ht
 
 COSMOS is a time-shared resource. To use the platform,, you must reserve the resources that you want to use in advance. COSMOS has several small testbeds, called "sandboxes" - you reserve an entire sandbox at a time, and then you have exclusive access to that sandbox and its resources for the duration of your reservation. Once your reservation ends, you will be disconnected from your resources.
 
-For our "Hello, COSMOS" experiment, you will need one hour on either sb1 (ORBIT), sb2 (ORBIT), sb3 (ORBIT), or sb7 (ORBIT).
+For our "Hello, COSMOS" experiment, you will need one hour on either sb1 (ORBIT) or sb3 (ORBIT).
 
 Use the calendar to select an available time. For example, if I want to reserve 9AM on Sunday morning on sb1 (ORBIT), I would click on the corresponding grid: 
 
