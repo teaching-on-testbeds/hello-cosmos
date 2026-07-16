@@ -104,6 +104,7 @@ Once you are logged in to the [COSMOS portal](https://www.cosmos-lab.org/portal/
 2. Paste the entire contents of `~/.ssh/id_ed25519_cosmos.pub` into the public key field. Make sure that you paste the public key, not the private key.
 3. Click "Add Key".
 4. Confirm that your key appears in the list of uploaded keys.
+
 ## Start an experiment
 
 Now, you are ready to run an experiment on COSMOS!
