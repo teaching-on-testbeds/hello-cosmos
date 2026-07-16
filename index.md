@@ -106,7 +106,6 @@ Once you are logged in to the [COSMOS portal](https://www.cosmos-lab.org/portal/
 4. Confirm that your key appears in the list of uploaded keys.
 
 
-
 Now, you can test your key! Use the following SSH command, replacing the username with your own and the example identity filename with *your* COSMOS private key:
 
 ```
@@ -121,6 +120,7 @@ exit
 ```
 
 in this shell to return to your local terminal.
+
 ## Start an experiment
 
 Now, you are ready to run an experiment on COSMOS!
@@ -298,14 +298,11 @@ Run these commands on **both nodes**:
 
 ```bash
 # runs on node1-1 and node1-2
-rm -rf /var/lib/apt/lists/*
 apt update
 apt -y install hostapd wpasupplicant iperf3 rfkill
 modprobe ath9k
 rfkill unblock wifi
 ```
-
-The image may contain stale APT indexes, so the first command removes the cached indexes before `apt update` downloads fresh copies.
 
 Confirm that the Atheros WiFi interface is available:
 
@@ -314,7 +311,7 @@ Confirm that the Atheros WiFi interface is available:
 iw dev
 ```
 
-Look for the interface listed under `phy#0`. On the tested nodes it is named `wlp3s0`, but the name can differ across hardware or disk images:
+Look for the interface listed under `phy#0`. In the example below it is named `wlp3s0`, but the name can differ across hardware or disk images:
 
 ```console
 phy#0
@@ -340,7 +337,7 @@ channel=11
 EOF
 ```
 
-This tutorial uses an open network inside your isolated sandbox. Do not use an open access point for a production network.
+This tutorial uses an open (no password, no encryption) network inside your isolated sandbox. In general, you would not use an open access point for a production network!
 
 Assign the AP its address and start `hostapd`:
 
@@ -375,7 +372,7 @@ Interface wlp3s0
 
 In the `node1-2` terminal, create the client configuration:
 
-> If `iw dev` showed an interface name other than `wlp3s0`, replace `wlp3s0` with that name in the commands below.
+> If `iw dev` shows an interface name other than `wlp3s0`, replace `wlp3s0` with that name in the commands below.
 
 ```bash
 # runs on node1-2
@@ -420,7 +417,9 @@ wpa_state=COMPLETED
 address=00:15:6d:84:fb:6f
 ```
 
-If the state is `SCANNING` or `ASSOCIATING`, run the status command again. Once the state is `COMPLETED`, assign the client address:
+If the state is `SCANNING` or `ASSOCIATING`, run the status command again.
+
+Once the state is `COMPLETED`, assign the client address:
 
 ```bash
 # runs on node1-2
