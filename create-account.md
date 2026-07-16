@@ -16,7 +16,7 @@ You may use the built-in terminal on Linux or Mac. On Windows 10 or 11, you may 
 
 Next, you will generate an SSH key pair. Later, you will add the public key to your COSMOS account, and then you will use these keys when connecting to COSMOS resources.
 
-> Note: If you already have an SSH key pair, you can use it with COSMOS - copy the contents of the public key, then skip to the "Create an account on COSMOS" section and continue there. If you don’t already have an SSH key pair, continue with the rest of this section.
+> Note: If you already have an SSH key pair, you can use it with COSMOS - copy the contents of the public key, then skip to the "Create an account on COSMOS" section and continue there. If you don't already have an SSH key pair, continue with the rest of this section.
 
 SSH public-key authentication uses a pair of separate keys (i.e., a key pair): one “private” key, which you keep a secret, and the other “public”. A key pair has a special property: any message that is encrypted with your private key can only be decrypted with your public key, and any message that is encrypted with your public key can only be decrypted with your private key. 
 
@@ -95,7 +95,6 @@ First, you will request an account on the COSMOS portal.
 5. Check your email for a confirmation link. Once you fill in the form, you will receive an email to confirm your Account Request. You must open the link in that email **within 30 minutes** to submit the account creation request. If you do not receive the email, check your spam folder.
 
 After you confirm your request, the PI for your group must approve it. COSMOS will send you another email when the PI approves your account. You can then log in to the [COSMOS portal](https://www.cosmos-lab.org/portal/).
-
 
 #### Upload your public key to COSMOS
 

@@ -16,7 +16,7 @@ You may use the built-in terminal on Linux or Mac. On Windows 10 or 11, you may 
 
 Next, you will generate an SSH key pair. Later, you will add the public key to your COSMOS account, and then you will use these keys when connecting to COSMOS resources.
 
-> Note: If you already have an SSH key pair, you can use it with COSMOS - copy the contents of the public key, then skip to the "Create an account on COSMOS" section and continue there. If you don’t already have an SSH key pair, continue with the rest of this section.
+> Note: If you already have an SSH key pair, you can use it with COSMOS - copy the contents of the public key, then skip to the "Create an account on COSMOS" section and continue there. If you don't already have an SSH key pair, continue with the rest of this section.
 
 SSH public-key authentication uses a pair of separate keys (i.e., a key pair): one “private” key, which you keep a secret, and the other “public”. A key pair has a special property: any message that is encrypted with your private key can only be decrypted with your public key, and any message that is encrypted with your public key can only be decrypted with your private key. 
 
@@ -96,7 +96,6 @@ First, you will request an account on the COSMOS portal.
 
 After you confirm your request, the PI for your group must approve it. COSMOS will send you another email when the PI approves your account. You can then log in to the [COSMOS portal](https://www.cosmos-lab.org/portal/).
 
-
 #### Upload your public key to COSMOS
 
 Once you are logged in to the [COSMOS portal](https://www.cosmos-lab.org/portal/),
@@ -105,6 +104,7 @@ Once you are logged in to the [COSMOS portal](https://www.cosmos-lab.org/portal/
 2. Paste the entire contents of `~/.ssh/id_ed25519_cosmos.pub` into the public key field. Make sure that you paste the public key, not the private key.
 3. Click "Add Key".
 4. Confirm that your key appears in the list of uploaded keys.
+
 
 
 Now, you can test your key! Use the following SSH command, replacing the username with your own and the example identity filename with *your* COSMOS private key:
@@ -175,8 +175,7 @@ After you create the reservation, it appears in yellow while it is pending appro
 
 COSMOS uses a two-stage automatic approval process. Requests submitted before noon for the following day receive pre-approval that day. Requests submitted less than 12 hours before their start time receive just-in-time approval at the beginning of the reserved time. You'll receive an email when your reservation is approved.
 
-Users may request a time slot even if another reservation is pending for that slot. The scheduler marks overlapping requests as a conflict, and decides which request to approve. COSMOS gives preference to users who have consumed less testbed time during the previous two weeks, so you should not reserve extra slots that you do not expect to use. Using or requesting more testbed time can reduce your chance of approval when your request conflicts with another user's request. 
-
+Users may request a time slot even if another reservation is pending for that slot. The scheduler marks overlapping requests as a conflict, and decides which request to approve. COSMOS gives preference to users who have consumed less testbed time during the previous two weeks, so you should not reserve extra slots that you do not expect to use. Using or requesting more testbed time can reduce your chance of approval when your request conflicts with another user's request.
 
 ## Access your sandbox
 

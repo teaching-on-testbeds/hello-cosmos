@@ -53,8 +53,7 @@ After you create the reservation, it appears in yellow while it is pending appro
 
 COSMOS uses a two-stage automatic approval process. Requests submitted before noon for the following day receive pre-approval that day. Requests submitted less than 12 hours before their start time receive just-in-time approval at the beginning of the reserved time. You'll receive an email when your reservation is approved.
 
-Users may request a time slot even if another reservation is pending for that slot. The scheduler marks overlapping requests as a conflict, and decides which request to approve. COSMOS gives preference to users who have consumed less testbed time during the previous two weeks, so you should not reserve extra slots that you do not expect to use. Using or requesting more testbed time can reduce your chance of approval when your request conflicts with another user's request. 
-
+Users may request a time slot even if another reservation is pending for that slot. The scheduler marks overlapping requests as a conflict, and decides which request to approve. COSMOS gives preference to users who have consumed less testbed time during the previous two weeks, so you should not reserve extra slots that you do not expect to use. Using or requesting more testbed time can reduce your chance of approval when your request conflicts with another user's request.
 
 ## Access your sandbox
 
