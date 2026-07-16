@@ -1,9 +1,8 @@
 # Hello, COSMOS
 
-COSMOS is a wireless research platform for experiments involving advanced wireless technologies. In this tutorial, you will prepare your workstation, create a COSMOS account, and add an SSH key to your account.
+COSMOS is a wireless research platform for experiments involving advanced wireless technologies. In this tutorial, you will prepare your workstation, create a COSMOS account, and add an SSH key to your account. Then, you'll run a simple COSMOS experiment in which you set up a WiFi access point and associate a client to it.
 
->[!NOTE]
->Before you start, ask your instructor or research advisor for the name of the COSMOS group you should join. You will need to select this group when you register.
+> Before you start, ask your instructor or research advisor for the name of the COSMOS group you should join. You will need to select this group when you register.
 
 
 ## Prepare your workstation 
@@ -12,27 +11,12 @@ To use COSMOS, you'll need to prepare your workstation (the laptop or PC you are
 
 You may use the built-in terminal on Linux or Mac. On Windows 10 or 11, you may use PowerShell, Windows Terminal, or any other terminal application that has an SSH client.
 
-## Create an account on COSMOS
-
-#### Create your COSMOS account
-
-First, you will request an account on the COSMOS portal.
-
-1. Open the [COSMOS user registration form](https://www.cosmos-lab.org/register_usr).
-2. Select the group name that your instructor or research advisor gave you.
-3. Enter your contact information and choose your mailing list preference.
-4. Submit the form.
-
->[!IMPORTANT]
->Once you fill in the form, you will receive an email to confirm your Account Request. You must open the link in that email within 30 minutes to submit the account creation request. If you do not receive the email, check your spam folder and allow messages from `accountmanager@orbit-lab.org`.
-
-After you confirm your request, the PI for your group must approve it. COSMOS will send you another email when the PI approves your account. You can then log in to the [COSMOS portal](https://www.cosmos-lab.org/portal/).
 
 #### Generate SSH keys
 
-Next, you will generate an SSH key pair. You will add the public key to your COSMOS account, and then you will use these keys when connecting to COSMOS resources.
+Next, you will generate an SSH key pair. Later, you will add the public key to your COSMOS account, and then you will use these keys when connecting to COSMOS resources.
 
-> Note: If you already have an SSH key pair, you can use it with COSMOS - copy the contents of the public key, then skip to the "Upload your public key to COSMOS" section and continue there. If you don’t already have an SSH key pair, continue with the rest of this section.
+> Note: If you already have an SSH key pair, you can use it with COSMOS - copy the contents of the public key, then skip to the "Create an account on COSMOS" section and continue there. If you don’t already have an SSH key pair, continue with the rest of this section.
 
 SSH public-key authentication uses a pair of separate keys (i.e., a key pair): one “private” key, which you keep a secret, and the other “public”. A key pair has a special property: any message that is encrypted with your private key can only be decrypted with your public key, and any message that is encrypted with your public key can only be decrypted with your private key. 
 
@@ -96,6 +80,23 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKsJ8MzC+ml/yEWbCsJJOqUENXumlhE+CYOvDkSI/Kk1
 This text string is your public key. You can copy it from the terminal output.
 
 
+## Create an account on COSMOS
+
+Now, you are ready to set up your COSMOS account!
+
+#### Create your COSMOS account
+
+First, you will request an account on the COSMOS portal.
+
+1. Open the [COSMOS user registration form](https://www.cosmos-lab.org/register_usr).
+2. For "Organization", select the group name that your instructor or research advisor gave you.
+3. Enter your contact information and choose your mailing list preference.
+4. Submit the form.
+5. Check your email for a confirmation link. Once you fill in the form, you will receive an email to confirm your Account Request. You must open the link in that email **within 30 minutes** to submit the account creation request. If you do not receive the email, check your spam folder.
+
+After you confirm your request, the PI for your group must approve it. COSMOS will send you another email when the PI approves your account. You can then log in to the [COSMOS portal](https://www.cosmos-lab.org/portal/).
+
+
 #### Upload your public key to COSMOS
 
 Once you are logged in to the [COSMOS portal](https://www.cosmos-lab.org/portal/),
@@ -104,44 +105,59 @@ Once you are logged in to the [COSMOS portal](https://www.cosmos-lab.org/portal/
 2. Paste the entire contents of `~/.ssh/id_ed25519_cosmos.pub` into the public key field. Make sure that you paste the public key, not the private key.
 3. Click "Add Key".
 4. Confirm that your key appears in the list of uploaded keys.
+
+
+Now, you can test your key! Use the following SSH command, replacing the username with your own and the example identity filename with *your* COSMOS private key:
+
+```
+ssh -i ~/.ssh/id_ed25519_cosmos YOUR_USERNAME@gw.cosmos-lab.org
+```
+The first time you connect, SSH may ask you to confirm the host key. Type `yes`, and press Enter. 
+
+A successful connection will open a shell on the COSMOS gateway. Run 
+
+```
+exit
+```
+
+in this shell to return to your local terminal.
 ## Start an experiment
 
 Now, you are ready to run an experiment on COSMOS!
 
-COSMOS resources are organized into **domains**. Each domain is an isolated environment with its own console, nodes, and control network. COSMOS has several kinds of domains:
+COSMOS resources are organized into "domains". Each domain is an isolated environment with its own console, nodes, and control network. COSMOS has several kinds of domains:
 
-* **Top-tier testbeds** support large-scale experiments. These include the outdoor `bed` domain in West Harlem and the indoor `grid` domain at WINLAB. We will not use the grid for this experiment; it is reserved for experiments that need its large-scale deployment.
-* **Sandboxes** are small, isolated environments, typically with two nodes and a console. Each sandbox has different radios, compute resources, and other devices. Sandboxes are intended for developing and debugging an experiment before you scale it to a larger testbed.
-* **Specialized domains** support work such as outdoor, model-intersection, and private 5G experiments.
+* **Top-tier testbeds** support large-scale experiments. These include the outdoor `bed` domain in West Harlem and the indoor `grid` domain at WINLAB. We will not use the grid for small experiments; it is reserved for experiments that need its large-scale deployment.
+* **Sandboxes** are small, isolated environments, typically with two nodes and a console. Each sandbox has different radios, compute resources, and other devices. Sandboxes are intended for developing and debugging an experiment before you scale it to a larger testbed, or for small-scale experiments (like the one we will run!)
+* **Specialized domains** have special capabilities, for example, to represent a smart city intersection or a manufacturing setting.
 
 You can read more about these environments in the [COSMOS domains guide](https://www.cosmos-lab.org/en/wiki/public/hardware/domains).
 
-In this "Hello, COSMOS" experiment, you will use two nodes in a sandbox to run a basic WiFi experiment. First, you will use the COSMOS Hardware Search to find the sandboxes whose nodes have WiFi interfaces.
+Since every domain has slightly different hardware (e.g. wireless radio types), the first step in any experiment is to identify where it should run. In this "Hello, COSMOS" experiment, we will need two nodes to run a basic WiFi experiment, so we must start by using the COSMOS Hardware Search to find the sandboxes that have two WiFi nodes!
 
-### Find a sandbox with WiFi
+#### Find a sandbox with WiFi
 
 Log in to the [COSMOS portal](https://www.cosmos-lab.org/portal/), then:
 
 1. Open "Status" in the navigation menu and select "Hardware Search".
 2. Under "Wireless / IoT", select "WiFi".
 3. Expand the "Domain" filter.
-4. Select each sandbox domain: `sb1`, `sb4`, `sb5`, `sb6`, and `sb7`. Leave `grid`, `bed`, and `weeks` unchecked.
+4. Select each sandbox domain: `sb1`, `sb4`, `sb5`, `sb6`, and `sb7`. Leave the top-tier testbeds (`grid`, `bed`), and the specialized domains (e.g., `weeks`) unchecked.
 
 ![](images/hardware-search-wifi-sandboxes.png)
 
-The filtered results show WiFi nodes in `sb1`, `sb5`, `sb6`, and `sb7`. For this experiment, create a reservation on **`sb5`, `sb6`, or `sb7`**. These are NJ sandboxes with two WiFi-capable nodes. Do not use `sb1` for this tutorial.
+The filtered results show WiFi nodes the selected domains. For this experiment, we can see that **`sb5`, `sb6`, or `sb7`** are NJ sandboxes with two WiFi-capable nodes, so we could use any of these for our experiment.
 
-The [COSMOS sandboxes guide](https://www.cosmos-lab.org/wiki/public/hardware/domains/sandboxes) describes the hardware and specialized capabilities of the NJ sandboxes. The hardware inventory and availability can change, so use Hardware Search to check the current options before you make a reservation.
 
 ### Reserve a sandbox
 
-Each student should create an **individual two-hour reservation** on `sb5`, `sb6`, or `sb7`.
+COSMOS resources are available by reservation. Each student should create an individual two-hour reservation on either `sb5`, `sb6`, or `sb7`, and then run the experiment at the reserved time.
 
-Open the [COSMOS Scheduler](https://www.cosmos-lab.org/portal/scheduler). The scheduler shows one day at a time. Use the date field in the upper-right corner to move to the day when you plan to run the experiment. The scheduler uses the COSMOS time zone, which is shown above the calendar.
+Open the [COSMOS Scheduler](https://www.cosmos-lab.org/portal/scheduler) (choose the "Scheduler" tab in the portal). The scheduler shows one day at a time, but you can use the date field in the upper-right corner to move to the day when you plan to run the experiment. The scheduler uses the COSMOS time zone, which is shown above the calendar.
 
 ![](images/reservation-scheduler.png)
 
-Find the row for `sb5.cosmos-lab.org`, `sb6.cosmos-lab.org`, or `sb7.cosmos-lab.org`. Choose a two-hour period that does not overlap another reservation, then click the grid square at the start of that period. For example, to reserve 2:00-4:00 PM, click the 2:00 PM square.
+Find the row for `sb5.cosmos-lab.org`, `sb6.cosmos-lab.org`, or `sb7.cosmos-lab.org`. Choose a two-hour period in which that domain is available, then click the grid square at the start of that period. For example, to reserve 2:00-4:00 PM, click the 2:00 PM square.
 
 The "New Reservation" form will open:
 
@@ -155,35 +171,29 @@ The "New Reservation" form will open:
 6. Leave "Invite users" empty and leave "Group reservation" unchecked. This is an individual reservation.
 7. Click "Create".
 
-After you create the reservation, it appears in yellow while it is pending approval. COSMOS sends reservation updates to the email address associated with your account. An approved reservation appears in dark blue.
+After you create the reservation, it appears in yellow while it is pending approval. An approved reservation appears in dark blue (other users' reservations) or purple (your own).
 
-COSMOS uses a two-stage approval process. Requests submitted before noon for the following day receive pre-approval that day. Requests submitted less than 12 hours before their start time receive just-in-time approval at the beginning of the reserved time.
+COSMOS uses a two-stage automatic approval process. Requests submitted before noon for the following day receive pre-approval that day. Requests submitted less than 12 hours before their start time receive just-in-time approval at the beginning of the reserved time. You'll receive an email when your reservation is approved.
 
-You may request a time slot even if another reservation is pending for that slot. The scheduler marks overlapping requests as a conflict and decides which request to approve. COSMOS gives preference to users who have consumed less testbed time during the previous two weeks. Request only the two-hour reservation you need for this experiment, and do not reserve extra slots that you do not expect to use. Using or requesting more testbed time can reduce your chance of approval when your request conflicts with another user's request. Avoid requesting a conflicting slot less than two hours before it starts because the just-in-time process may not resolve that conflict.
+Users may request a time slot even if another reservation is pending for that slot. The scheduler marks overlapping requests as a conflict, and decides which request to approve. COSMOS gives preference to users who have consumed less testbed time during the previous two weeks, so you should not reserve extra slots that you do not expect to use. Using or requesting more testbed time can reduce your chance of approval when your request conflicts with another user's request. 
 
-The [COSMOS reservation guide](https://www.cosmos-lab.org/wiki/public/getting-started/createres) has more information about reservations, approvals, and conflicts.
 
 ## Access your sandbox
 
 Wait until your reservation is approved and its start time has arrived. You cannot access the sandbox console before then.
 
-Open a terminal on your workstation and SSH to the console for your reserved domain. Replace `YOUR_USERNAME` with your COSMOS username and replace `sb6` if you reserved `sb5` or `sb7`:
+You can confirm that your reservation is active by visiting the "Status > Testbed Status" page in the portal. If your reservation is active, it will show the status of the testbed that you reserved.
+
+Once your reservation is active, open a terminal on your workstation and SSH to the console for your reserved domain. In the following command, replace `YOUR_USERNAME` with your COSMOS username and replace the `X` in `sbX` with `5`, `6`, or `7`, depending on which sandbox you reserved:
 
 ```bash
 # runs on your workstation
-ssh -i ~/.ssh/id_ed25519_cosmos YOUR_USERNAME@sb6.cosmos-lab.org
+ssh -i ~/.ssh/id_ed25519_cosmos YOUR_USERNAME@sbX.cosmos-lab.org
 ```
 
-The console hostname confirms which domain you have entered:
+The console is a shared control machine for the domain. You will use it to image, turn on, and access the two experiment nodes in the sandbox.
 
-```console
-$ hostname
-console.sb6.cosmos-lab.org
-```
-
-The console is a shared control machine for the domain. You will use it to image, turn on, and access the two experiment nodes. Do not install experiment software on the console.
-
-### Check the nodes
+#### Check node status
 
 Run:
 
@@ -209,8 +219,7 @@ Load the `ubuntu2404-uhd4.8-gr3.10.ndz` image onto both nodes:
 
 ```bash
 # runs on console
-omf load -i ubuntu2404-uhd4.8-gr3.10.ndz \
-  -t node1-1,node1-2
+omf load -i ubuntu2404-uhd4.8-gr3.10.ndz -t node1-1,node1-2
 ```
 
 Imaging takes several minutes. `omf load` resets the nodes, writes the image, and powers the nodes off when it finishes. A successful run ends with output like this:
